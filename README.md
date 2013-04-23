@@ -7,6 +7,7 @@ and certain aspects of computer science.
 
 Copyright © 2013 Jack Rusher
 
+```
 ;; ----------------------------------------------------------------------------
 ;; "THE TEA-WARE LICENSE" (Revision 1.414):
 ;; <jack@rusher.com> wrote this file. As long as you retain this notice you
@@ -15,3 +16,4 @@ Copyright © 2013 Jack Rusher
 ;;
 ;; See also: http://en.wikipedia.org/wiki/Beerware#License
 ;; ----------------------------------------------------------------------------
+```
