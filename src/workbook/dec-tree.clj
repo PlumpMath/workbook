@@ -49,24 +49,24 @@
   ;; The work gets done here:
   ([column-names rows columns current-entropy]
      ;; if there are no more columns to consider, or there's only one
-     ;; row left, we great a leaf node and return it.
+     ;; row left, we create a leaf node and return it.
      (if (or (empty? columns) (< (count rows) 2))
 
        ;; the leaf node is a brand new hash-map containing a single
        ;; K/V pair, :decision and the value of the remaining possible
-       ;; decision. (N.B. We made a new hash-map at each leaf and
+       ;; decision. (N.B. We make a new hash-map at each leaf and
        ;; branch, building the tree depth first.)
-       (assoc {} :decision (last (first rows)))
+       (hash-map :decision (last (first rows)))
 
        ;; otherwise, we get the gain in entropy for each column in
        ;; columns, sort out the highest and use that column
-       (let [[max-gain best] (first (max (map #(vector (gain current-entropy % rows) %) columns)))]
+       (let [[max-gain best] (last (sort (map #(vector (gain current-entropy % rows) %) columns)))]
 
          ;; if the max gain turns out to be <= 0 (it can be less than
          ;; zero because of floating point imprecision), we return a
          ;; leaf node, as above.
          (if (<= max-gain 0)
-           (assoc {} :decision (last (first rows)))
+           (hash-map :decision (last (first rows)))
 
            ;; otherwise, we reduce the results of a series of
            ;; recursive calls to this function into the current
